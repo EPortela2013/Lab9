@@ -46,3 +46,15 @@ Temporary Items
 *.lastbuildstate
 *.sdf
 *.lastbuildstate
+*.suo
+*.ilk
+Debug/Lab9.pdb
+*.tlog
+*.pdb
+Lab9.sln
+*.vcxproj
+*.idb
+Labs 8-10.pdf
+*.filters
+*.obj
+Debug/Lab9.exe

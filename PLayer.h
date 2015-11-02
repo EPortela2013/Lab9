@@ -1,4 +1,4 @@
-﻿#ifndefined PLAYER_H
+﻿#if ndefined PLAYER_H
 #define PLAYER_H
 
 #include <iostream>
