@@ -1,4 +1,4 @@
-#include "PLayer.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ Player::Player(string givenName)
 string Player::getRPSThrow() const
 {
 	//Generate random number between 0 and 3
-	int choice = rand(time()) % 3;
+	int choice = rand() % 3;
 
 	//Based on the random number, return the throw as string
 	switch (choice)
@@ -38,11 +38,16 @@ string Player::getRPSThrow() const
 
 double Player::getWinRecord() const
 {
-	//Calculate total number of fights by adding wins, losses, and draws
-	int totalFights = numWins + numLosses + numDraws;
+	//Constant representing 100%
+	const double HUNDRED_PERCENT = 100.00;
 
-	//Return win record as double by dividing the number of wins by the total number of fights
-	return 1.0 * numWins / totalFights * 100.00;
+	//Calculate total number of fights by adding wins, losses, and draws
+	double totalFights = numWins + numLosses + numDraws;
+
+	//Calculate win record by dividing the number of wins by the total number of fights
+	double winRecord = numWins / totalFights * HUNDRED_PERCENT;
+	
+	return winRecord;
 }
 
 string Player::toString() const
@@ -55,7 +60,7 @@ string Player::toString() const
 		               << "Wins: " << numWins << endl
 		               << "Losses: " << numLosses << endl
 					   << "Draws: " << numDraws << endl
-		               << "Win Record: " << fixed << precision(2) << getWinRecord() << endl;
+		               << "Win Record: " << fixed << setprecision(2) << getWinRecord() << endl;
 
 	//Return concatenated information
 	return playerStringStream.str();
