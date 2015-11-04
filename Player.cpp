@@ -44,6 +44,9 @@ double Player::getWinRecord() const
 	//Calculate total number of fights by adding wins, losses, and draws
 	double totalFights = numWins + numLosses + numDraws;
 
+	//If the total fights are 0, return 0.0 in order to avoid division by 0
+	if (totalFights == 0) return 0.0;
+
 	//Calculate win record by dividing the number of wins by the total number of fights
 	double winRecord = numWins / totalFights * HUNDRED_PERCENT;
 	
@@ -57,13 +60,18 @@ string Player::toString() const
 
 	//Concetanate all player information
 	playerStringStream << "Player " << name << " has the following record: " << endl
-		               << "Wins: " << numWins << endl
-		               << "Losses: " << numLosses << endl
-					   << "Draws: " << numDraws << endl
-		               << "Win Record: " << fixed << setprecision(2) << getWinRecord() << endl;
+		               << "Wins: " << numWins << ", "
+		               << "Losses: " << numLosses << ", "
+					   << "Draws: " << numDraws << ", "
+		               << "Win Record: " << fixed << setprecision(2) << getWinRecord() << "%" << endl;
 
 	//Return concatenated information
 	return playerStringStream.str();
+}
+
+string Player::getName() const
+{
+	return name;
 }
 
 void Player::setNumWins(int newNumWins)

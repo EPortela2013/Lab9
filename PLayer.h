@@ -52,6 +52,15 @@ public:
 	string toString() const;
 
 	/*
+	* getName
+	*
+	* Returns player's name
+	*
+	* Return: Player's name as string
+	*/
+	string getName() const;
+
+	/*
 	* setNumWins
 	*
 	* Sets new number of wins

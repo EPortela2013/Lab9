@@ -61,5 +61,18 @@ void fight(vector<Player *> waitingPlayers);
 void deleteAllPlayers(vector<Player *> &allPlayers);
 
 
+/*
+*findPlayer
+*
+* Looks for player inside the given pointer array by using the player's name
+*
+*Parameter: Vector containing pointers to all players in the game
+*Parameter: String containing name to find
+*
+* Return:  The index of the found player. -1 if player is not found in vector
+*/
+int findPlayer(const vector<Player *> &playerVector, const string &nameToFind);
+
+
 
 #endif

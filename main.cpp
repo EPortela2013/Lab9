@@ -11,7 +11,9 @@ int main()
 	const int FIRST_VALID_CHOICE = 1;		//Constant for first valid menu choice
 	const int LAST_VALID_CHOICE = 6;		//Constant for last valid menu choice
 	const int QUIT_CHOICE = 6;				//Constant for choice to quit program
+	const int NUM_CHARS_TO_IGNORE = 1;		//Constant for number of characters to ignore before next getline call
 	int choice = SAFE_CHOICE;							//Will hold the choice user makes from the main menu
+
 
 
 	vector<Player *> allPlayers;			//Contains pointers to all player objects
@@ -44,6 +46,8 @@ int main()
 				choice = SAFE_CHOICE;
 
 			}
+			//Prepare input stream for getline call
+			cin.ignore(NUM_CHARS_TO_IGNORE);
 
 		} while (choice < FIRST_VALID_CHOICE || choice > LAST_VALID_CHOICE);  //Loop indefinitely until user makes a valid choice
 
@@ -88,11 +92,57 @@ int main()
 
 void showAllPlayers(const vector<Player *> &allPlayers)
 {
+	int vectorSize = allPlayers.size();
+
+	//If there are no players in the vector, print message and return
+	if (vectorSize == 0)
+	{
+		cout << endl << "There are currently no players in the game. Please add some." << endl << endl;
+		return;
+	}
+
+	//Display header
+	if(vectorSize == 1)	cout << endl << "There is 1 player in the game: " << endl;
+	else cout << endl << "There are " << vectorSize << " players in the game: " << endl;
+
+	//Loop through all players in vector and print
+	for (int i = 0; i < vectorSize; i++)
+	{
+		cout << endl << allPlayers[i]->toString() << endl;
+	}
 
 }
 
 void addPlayer(vector<Player *> &allPlayers)
 {
+	string newName;		//Will hold the new player's name
+		
+	//Prompt user for the new player's name
+	cout << endl << "Please enter the new player's name and press enter: ";
+
+	//Capture player's name
+	getline(cin, newName);
+
+	//Check if player's name is in vector
+	if (findPlayer(allPlayers, newName) == -1)
+	{
+		//Player not found in vector, create new player with given name
+		Player *newPlayer = new Player(newName);
+
+		//Add new player to player's vector
+		allPlayers.push_back(newPlayer);
+
+		//Display success message
+		cout << endl << "Player " << newName << " has been successfully added to the player's list." << endl << endl;
+
+	}
+	else
+	{
+		cout << endl <<  "Player " << newName << " is already on the player's list." << endl << endl;
+	}
+
+
+
 
 }
 
@@ -126,4 +176,22 @@ void deleteAllPlayers(vector<Player *> &allPlayers)
 		//Set to null as a precaution
 		allPlayers[i] = NULL;
 	}
+}
+
+
+int findPlayer(const vector<Player *> &playerVector, const string &nameToFind)
+{
+	//Store the vector size
+	int vectorSize = playerVector.size();
+
+	//Loop through the players
+	for (int i = 0; i < vectorSize; i++)
+	{
+		//If the current player's name matches the name to find, return current index
+		if (playerVector[i]->getName() == nameToFind) return i;
+	}
+
+	//Looped through all players and did not find name, return -1
+
+	return -1;
 }
