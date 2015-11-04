@@ -5,6 +5,8 @@
 
 using namespace std;
 
+const int MINIMUM_NUM_PLAYERS = 2;				//Constant for minimum number of players required for a fight
+
 int main()
 {
 	const int SAFE_CHOICE = 0;				//Constant used for resetting choice to a safe setting
@@ -220,7 +222,7 @@ void showWaitingPlayers(const vector<Player *> &waitingPlayers)
 
 void fight(vector<Player *> &waitingPlayers)
 {
-	const int MINIMUM_NUM_PLAYERS = 2;				//Constant for minimum number of players required for a fight
+	
 	int vectorSize = waitingPlayers.size();			//Store size of waiting players vector
 	Player *player1 = NULL;							//Will hold pointer to first player
 	Player *player2 = NULL;							//Will hold pointer to second player
@@ -437,7 +439,6 @@ void executeFight(Player *player1, Player *player2)
 
 void prepareForNextRound(vector<Player *> &waitingPlayers)
 {
-	const int MINIMUM_NUM_PLAYERS = 2;				//Constant for minimum number of players required for a fight
 	int vectorSize = waitingPlayers.size();			//Store the vector's  size
 	vector<Player *> temp;							//Create a temporary vector that will hold the 
 	
