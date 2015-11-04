@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Player.cpp"
 #include <vector>
+#include <limits>
 #include "helper_functions.h"
 
 using namespace std;
@@ -84,7 +85,7 @@ int main()
 
 	} while (choice != QUIT_CHOICE); //Loop indefinitely until user selects to quit
 
-	//Terminating program, call function to deallocate memory allocated by all players vector
+	//Terminating program, call function to deallocate memory held by all players vector
 	deleteAllPlayers(allPlayers);
 
 	return 0;

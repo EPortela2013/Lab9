@@ -23,11 +23,11 @@ Player::Player(string givenName)
 
 string Player::getRPSThrow() const
 {
-	//Seed for random number
-	srand(unsigned int(time(NULL) * rand()));
-
+	//Seed random
+	srand(time(NULL));
+	
 	//Generate random number between 0 and 2
-	int choice = rand() % 3;
+	int choice =  rand() % 3;
 
 	//Based on the random number, return the throw as string
 	switch (choice)
