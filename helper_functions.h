@@ -48,7 +48,7 @@ void showWaitingPlayers(const vector<Player *> &waitingPlayers);
 *
 *Parameter: Vector containing pointers to all players in the game
 */
-void fight(vector<Player *> waitingPlayers);
+void fight(vector<Player *> &waitingPlayers);
 
 
 /*
@@ -73,6 +73,27 @@ void deleteAllPlayers(vector<Player *> &allPlayers);
 */
 int findPlayer(const vector<Player *> &playerVector, const string &nameToFind);
 
+/*
+*executeFight
+*
+* Handles the logic for the fight, updates players records according to outcome, and displays results of the fight
+*
+*Parameter: Player pointer to first player in fight
+*Parameter: Player pointer to second player in fight
+*
+*/
+void executeFight(Player *player1, Player *player2);
+
+
+/*
+*prepareForNextRound
+*
+* Prepares waiting players vector for next round by removing the first two players of the vector
+*
+*Parameter: Vector containing pointers to the players waiting for a match
+*
+*/
+void prepareForNextRound(vector<Player *> &waitingPlayers);
 
 
 #endif

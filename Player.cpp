@@ -23,7 +23,10 @@ Player::Player(string givenName)
 
 string Player::getRPSThrow() const
 {
-	//Generate random number between 0 and 3
+	//Seed for random number
+	srand(unsigned int(time(NULL) * rand()));
+
+	//Generate random number between 0 and 2
 	int choice = rand() % 3;
 
 	//Based on the random number, return the throw as string
@@ -32,7 +35,10 @@ string Player::getRPSThrow() const
 	case 0: return string("Rock");
 	case 1: return string("Paper");
 	case 2: return string("Scissors");
+	default: return string("Rock");
 	}
+
+	
 }
 
 
