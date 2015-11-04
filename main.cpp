@@ -110,7 +110,8 @@ void showAllPlayers(const vector<Player *> &allPlayers)
 	//Loop through all players in vector and print
 	for (int i = 0; i < vectorSize; i++)
 	{
-		cout << endl << allPlayers[i]->toString() << endl;
+		//Make sure pointer is not NULL. If usable, display player information
+		if (allPlayers[i] != NULL) cout << endl << allPlayers[i]->toString() << endl;
 	}
 
 }
@@ -216,7 +217,8 @@ void showWaitingPlayers(const vector<Player *> &waitingPlayers)
 	//Loop through waiting players
 	for (int i = 0; i < vectorSize; i++)
 	{
-		cout << endl << waitingPlayers[i]->toString() << endl;
+		//Make sure pointer is not NULL. If usable, display player information
+		if(waitingPlayers[i] != NULL) cout << endl << waitingPlayers[i]->toString() << endl;
 	}
 }
 
@@ -244,11 +246,15 @@ void fight(vector<Player *> &waitingPlayers)
 	{
 		//It is the same player
 
-		//Add draw to player
-		player1->increaseNumDraws();
+		//Make sure the pointer is not NULL before using
+		if (player1 != NULL)
+		{
+			//Add draw to player
+			player1->increaseNumDraws();
 
-		//Display message
-		cout << endl << "Player " << player1->getName() << " cannot fight against self! Draw added to record!" << endl << endl;
+			//Display message
+			cout << endl << "Player " << player1->getName() << " cannot fight against self! Draw added to record!" << endl << endl;
+		}
 	}
 	else
 	{
@@ -292,8 +298,12 @@ int findPlayer(const vector<Player *> &playerVector, const string &nameToFind)
 	//Loop through the players
 	for (int i = 0; i < vectorSize; i++)
 	{
-		//If the current player's name matches the name to find, return current index
-		if (playerVector[i]->getName() == nameToFind) return i;
+		//Check if pointer is usable, i.e. not NULL
+		if (playerVector[i] != NULL)
+		{
+			//If the current player's name matches the name to find, return current index
+			if (playerVector[i]->getName() == nameToFind) return i;
+		}
 	}
 
 	//Looped through all players and did not find name, return -1
@@ -303,6 +313,10 @@ int findPlayer(const vector<Player *> &playerVector, const string &nameToFind)
 
 void executeFight(Player *player1, Player *player2)
 {
+	//Test to make neither pointer is NULL, if so don't continue, return
+	if (player1 == NULL) return;
+	if (player2 == NULL) return;
+
 	//Get names for players and store them
 	string player1Name = player1->getName();
 	string player2Name = player2->getName();
