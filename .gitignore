@@ -58,3 +58,6 @@ Labs 8-10.pdf
 *.filters
 *.obj
 Debug/Lab9.exe
+*.ipdb
+Release/Lab9.exe
+*.iobj
