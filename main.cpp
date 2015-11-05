@@ -18,6 +18,9 @@ int main()
 	int choice = SAFE_CHOICE;				//Will hold the choice user makes from the main menu
 
 
+	//Seed random number generator
+	srand(time(NULL));
+
 
 	vector<Player *> allPlayers;			//Contains pointers to all player objects
 	vector<Player *> waitingPlayers;		//Contains pointers to players waiting for a match
